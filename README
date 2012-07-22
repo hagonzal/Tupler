@@ -1,0 +1,44 @@
+Tupler is a parser for configuration files. A configuration file is composed
+of tuples and tuples are composed of key value pairs. For example:
+
+main_section {
+ key1 = "some string";
+ key2 = 12.23;
+}
+
+This defines a tuple named main_section with two keys: key1 and key2
+
+The result of parsing a config file is a list of key value pairs. For the 
+above example the pairs are:
+
+main_section.key1 = "some string"
+main_section.key2 = 12.23
+
+Tuples can inherit from other tuples. For example:
+
+derived_main : main_section {
+  key1 = "override some string";
+  key3 = 10;
+}
+
+The result of parsing both the main and derived sections is:
+
+main_section.key1 = "some string"
+main_section.key2 = 12.23
+
+derived_main.key1 = "override some string"
+derived_main.key2 = 12.23
+derived_main.key3 = 10
+
+A snippet of code of how to use the library:
+
+#include "config/config_map.h"
+#include "config/tuple_parser.h"
+
+int main() {
+  ...
+  ConfigMap *map = parse_config_file(file_name);
+  std::string key1 = map->GetString("main_section.key1");
+  double key2 = map->GetDouble("main_section.key2");
+  ...
+}
