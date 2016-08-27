@@ -1,0 +1,8 @@
+Requirements
+
+bison
+flex
+
+Compiling
+
+make
