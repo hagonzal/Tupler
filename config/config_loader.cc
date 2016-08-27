@@ -11,8 +11,6 @@
 #include <string>
 #include <set>
 
-#include <glog/logging.h>
-
 #include "config/config_map.h"
 #include "util/util.h"
 
@@ -26,7 +24,7 @@ void print_lines(StringList & lines) {
   StringList::iterator it = lines.begin();
   int i=0;
   while (it != lines.end()) {
-    VLOG(1) << i++ << ": " << (*it);
+    std::cerr << i++ << ": " << (*it);
     it++;
   }
 }
@@ -48,7 +46,7 @@ void ConfigLoader::Load(const std::string& file_name, StringList& lines) {
     if (!f.empty()) {
       if (loaded.find(f) != loaded.end()) {
         // Already loaded this include, there is a loop
-        LOG(ERROR) << "loop in includes " << f;
+        std::cerr << "loop in includes " << f;
         exit(1);
       }
 
@@ -76,12 +74,12 @@ StringList::iterator ConfigLoader::LoadInternal(
 
   std::fstream fin;
 
-  VLOG(1) << "loading file " << file_name;
+  std::cerr << "loading file " << file_name;
 
   fin.open(file_name.c_str(), std::ios::in);
 
   if (!fin.good()) {
-    LOG(ERROR) << "could not open " << file_name;
+    std::cerr << "could not open " << file_name;
     exit(1);
   }
 

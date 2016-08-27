@@ -16,8 +16,6 @@
 #include <map>
 #include <string>
 
-#include <glog/logging.h>
-
 #include "config/config_map_builder.h"
 #include "config/config_loader.h"
 
@@ -41,7 +39,7 @@ ConfigMap *parse_config_string(const std::string& input_string) {
     return builder.GetMap();
   }
 
-  LOG(ERROR) << "could not parse config";
+  std::cerr << "could not parse config";
   exit(1);
 }
 

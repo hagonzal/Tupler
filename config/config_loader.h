@@ -11,6 +11,7 @@
 #include <string>
 #include <list>
 #include <map>
+#include <iostream>
 
 typedef std::list<std::string> StringList;
 

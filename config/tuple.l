@@ -10,6 +10,8 @@
 #include <iostream>
 #include <cstdlib>
 
+#include "config/config_map_builder.h"
+#include "config/config_map.h"
 #include "config/tuple.tab.h"
 
 %}

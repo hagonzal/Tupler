@@ -11,7 +11,6 @@ CC := g++
 CFLAGS := -Wall -g -O2 -I.
 #Debug flags.
 #CFLAGS := -Wall -g -I.
-LIBS := -lgflags -lglog
 LFLAGS :=
 
 OBJ_UTIL = \
